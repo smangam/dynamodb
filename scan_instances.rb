@@ -8,14 +8,12 @@ dynamodbclient = Aws::DynamoDB::Client.new({
                          region: 'us-east-1'
                          })
 
-puts "enter table:"
-mytable=gets.chomp
+mytable="instances"
 last_key=''
 f = File.new("sm.txt","w")
 
 loop do
   if last_key == nil or last_key.empty?
-    puts "key is empty"
     resp = dynamodbclient.scan({
                table_name: "#{mytable}",
                limit: 10
